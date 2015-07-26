@@ -8,7 +8,7 @@
 ## then sets the value of the invers in the inv variable cached.
 
 makeCacheMatrix <- function(x = matrix()) {
-     s <- NULL
+    # s <- NULL
      set <- function(y) {
           x <<- y
           s <<- NULL
@@ -25,17 +25,20 @@ makeCacheMatrix <- function(x = matrix()) {
 ## Write a short comment describing this function
 
 ## This function looks to see if inverse matrix has been cached, if it has
-## not been cached, it calculates the inverse matrix.
+## not been cached, it calculates the inverse matrix with the solve function.
 cacheSolve <- function(x, ...) {
      ## Return a matrix that is the inverse of 'x'
      c <- makeCacheMatrix(x)
-     sol <- c$getsolve()
-     if(!is.null(sol)) {
+     s <- c$getsolve()
+     print(s)
+     if(!is.null(s)) {
           message("getting cached data")
-          return(sol)
+          return(s)
      }
      data <- c$get()
-     sol <- c$setsolve(solve(x))
-     sol
+     ##print(data)
+     s <- solve(data)
+     c$setsolve(s)
+     s
 }
 
